@@ -148,12 +148,12 @@ vendor/lib64/vendor.qti.hardware.pal@1.0.so
 # Audio AGM
 vendor/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service
 vendor/etc/init/vendor.qti.hardware.AGMIPC@1.0-service.rc
--vendor/lib64/libagm.so
 -vendor/lib/libagm.so
+-vendor/lib/vendor.qti.hardware.AGMIPC@1.0-impl.so
+-vendor/lib64/libagm.so
 vendor/lib64/libagmclient.so
 vendor/lib64/libagmmixer.so
 -vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
--vendor/lib/vendor.qti.hardware.AGMIPC@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
 
 # Audio FX modules
@@ -301,7 +301,6 @@ vendor/etc/data/netmgr_config.xml
 vendor/etc/init/dataadpl.rc
 vendor/etc/init/dataqti.rc
 vendor/etc/init/init.embmssl_server.rc
-vendor/etc/init/ipa_fws.rc
 vendor/etc/init/netmgrd.rc
 vendor/etc/init/port-bridge.rc
 vendor/etc/init/shsusrd.rc
@@ -820,6 +819,13 @@ vendor/lib64/vendor.qti.ims.rcsuce@1.2.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
 
+# Native public libraries
+vendor/etc/public.libraries.txt
+
+# Osense
+odm/lib64/libosenseaidlhalclient.so
+odm/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
+
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
 
@@ -862,7 +868,6 @@ vendor/lib64/libkeymasterdeviceutils.so
 vendor/lib64/libkeymasterprovision.so
 vendor/lib64/libkeymasterutils.so
 vendor/lib64/libqtikeymaster4.so
-vendor/lib64/libspcom.so
 
 # Keymint
 vendor/bin/hw/android.hardware.security.keymint-service-qti
@@ -957,12 +962,17 @@ vendor/lib64/libFlacSwDec.so
 odm/bin/hw/vendor-oplus-hardware-performance-V1-service
 odm/etc/init/vendor-oplus-hardware-performance-V1-service.rc
 odm/etc/vintf/manifest/manifest_performance_aidl.xml
+odm/lib/vendor.oplus.hardware.performance-V1-ndk_platform.so
 odm/lib64/vendor.oplus.hardware.performance-V1-ndk_platform.so
+vendor/etc/smomo_setting.xml
+vendor/lib/vendor.oplus.hardware.performance-V1-ndk_platform.so
+vendor/lib64/vendor.oplus.hardware.performance-V1-ndk_platform.so
 
 # Peripheral manager
 vendor/bin/pm-proxy
 vendor/bin/pm-service
 vendor/lib64/libperipheral_client.so
+vendor/lib64/libspcom.so
 
 # PD
 vendor/bin/pd-mapper
@@ -1081,6 +1091,7 @@ vendor/etc/init/qguard.rc
 vendor/etc/qguard.json
 
 # QMI
+system/etc/permissions/privapp-permissions-qti.xml
 system/etc/sysconfig/qti_whitelist.xml
 vendor/bin/init.qti.write.sh
 vendor/bin/irsc_util
@@ -1088,12 +1099,18 @@ vendor/bin/qmipriod
 vendor/bin/qrtr-cfg
 vendor/bin/qrtr-lookup
 vendor/bin/qrtr-ns
-vendor/etc/init/qmipriod.debug.rc
 vendor/etc/init/qmipriod.rc
 vendor/etc/seccomp_policy/qti-systemd.policy
+vendor/etc/sec_config
+vendor/lib64/libdiag.so
+vendor/lib64/libdsi_netctrl.so
+vendor/lib64/libdsutils.so
 vendor/lib64/libidl.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libqcci_legacy.so
+vendor/lib64/libqcmaputils.so
+vendor/lib64/libqdi.so
+vendor/lib64/libqdp.so
 vendor/lib64/libqmi.so
 vendor/lib64/libqmi_cci.so
 vendor/lib64/libqmi_client_helper.so
@@ -1111,6 +1128,7 @@ vendor/lib64/libsmemlog.so
 vendor/lib64/libsystem_health_mon.so
 
 # QSPM
+system_ext/lib64/libpenguin.so
 vendor/bin/vendor.qti.qspmhal@1.0-service
 vendor/etc/init/vendor.qti.qspmhal@1.0-service.rc
 vendor/etc/seccomp_policy/qspm.policy
