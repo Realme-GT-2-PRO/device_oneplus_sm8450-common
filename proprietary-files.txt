@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise, are
-## from OnePlus 10 Pro 5G (NE2213_14.0.0.700(EX01)).
+## from Realme GT 2 Pro 5G (RMX3301_14.0.0.601(EX01)).
 
 # ACDBs
 vendor/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.36_enpu2.pmd
@@ -346,6 +346,7 @@ vendor/lib64/libPanelChaplin.so
 
 # Display
 vendor/lib64/vendor.qti.hardware.display.config-V5-ndk_platform.so
+vendor/lib64/vendor.qti.hardware.display.config-V6-ndk_platform.so
 
 # Display (HDR)
 vendor/lib64/libhdr_tm.so
@@ -1199,7 +1200,7 @@ vendor/lib64/qtiril-utils.so
 vendor/lib64/qtiwakelock.so
 vendor/lib64/vendor.oplus.hardware.appradioaidl-V1-ndk_platform.so
 vendor/lib64/vendor.oplus.hardware.communicationcenter-V1-ndk_platform.so
-vendor/lib64/vendor.oplus.hardware.radio-V2-ndk_platform.so
+vendor/lib64/vendor.oplus.hardware.radio-V1-ndk_platform.so
 vendor/lib64/vendor.qti.hardware.data.connection@1.0.so
 vendor/lib64/vendor.qti.hardware.data.connection@1.1.so
 vendor/lib64/vendor.qti.hardware.data.connectionfactory-V1-ndk_platform.so
@@ -1547,3 +1548,6 @@ vendor/lib64/libwfduibcsrcinterface_vendor.so
 vendor/lib64/libwfdutils_proprietary.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysessionl@1.0-halimpl.so
+
+system/system/etc/cgroups.json:vendor/etc/cgroups.json
+system/system/etc/task_profiles.json:vendor/etc/task_profiles.json

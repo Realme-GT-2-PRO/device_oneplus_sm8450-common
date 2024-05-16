@@ -145,7 +145,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk_platform.vendor \
-    android.hardware.graphics.common-V1-ndk_platform.vendor \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
