@@ -147,10 +147,13 @@ vendor/lib64/vendor.qti.hardware.pal@1.0.so
 
 # Audio AGM
 vendor/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service
+vendor/etc/init/vendor.qti.hardware.AGMIPC@1.0-service.rc
 -vendor/lib64/libagm.so
+-vendor/lib/libagm.so
 vendor/lib64/libagmclient.so
 vendor/lib64/libagmmixer.so
 -vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
+-vendor/lib/vendor.qti.hardware.AGMIPC@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
 
 # Audio FX modules
