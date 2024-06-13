@@ -2441,6 +2441,14 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>3</version>
+        <interface>
+            <name>IBluetoothAudioProviderFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <sepolicy>
         <kernel-sepolicy-version>30</kernel-sepolicy-version>
         <sepolicy-version>29.0</sepolicy-version>
