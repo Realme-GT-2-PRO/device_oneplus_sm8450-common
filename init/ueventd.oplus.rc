@@ -11,9 +11,14 @@
 # NFC
 /dev/st21nfc    0660    nfc               nfc
 /dev/st54spi    0660    secure_element    secure_element
+/dev/nfc-nci              0660    nfc         nfc
+/dev/nq-nci               0660    nfc         nfc
+/dev/assd                 0660    nfc         nfc
 
 # Reserve
-/dev/block/bootdevice/by-name/oplusreserve1    0660    root    system
+/dev/block/bootdevice/by-name/oplusreserve1               0660   root     system
+/dev/block/bootdevice/by-name/oplusreserve3               0660   root     system
+/dev/block/bootdevice/by-name/oplusreserve5               0660   root     system
 
 # WiFi
 firmware_directories /mnt/vendor/persist/copy/ /odm/etc/wifi/ /mnt/vendor/persist/
