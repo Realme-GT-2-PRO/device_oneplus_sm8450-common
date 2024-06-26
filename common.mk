@@ -303,6 +303,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
     
+# LZ4
+PRODUCT_PACKAGES += \
+    liblz4.vendor
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -324,7 +327,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libavservices_minijail \
     libavservices_minijail.vendor \
-    libstagefright_softomx_plugin.vendor \
     libcodec2_hidl@1.0.vendor \
     libpalclient
 
@@ -340,7 +342,8 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libOmxCore \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefright_softomx_plugin.vendor
 
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/generic/generic.mk)
@@ -478,7 +481,8 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.dual_role_usb
+    android.hardware.usb@1.3-service.dual_role_usb \
+    libusbhost.vendor
 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/usb/etc
