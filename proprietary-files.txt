@@ -158,6 +158,7 @@ vendor/lib64/soundfx/libasphere.so
 vendor/lib64/soundfx/libshoebox.so
 
 # Bluetooth
+odm/lib64/libbluetooth_audio_extend_factory_client.so
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
 vendor/lib/hw/android.hardware.bluetooth.audio@2.0-impl.so
