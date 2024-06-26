@@ -362,7 +362,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
+    android.hardware.power-service \
     android.hardware.power@1.3.vendor \
     vendor.qti.hardware.perf@2.3.vendor
 
