@@ -56,6 +56,7 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libhfp_pal \
     libreverbwrapper \
     libsndcardparser \
     libtinycompress \
