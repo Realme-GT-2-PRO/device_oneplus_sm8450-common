@@ -310,6 +310,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libavservices_minijail \
     libavservices_minijail.vendor \
+    libstagefright_softomx_plugin.vendor \
     libcodec2_hidl@1.0.vendor \
     libpalclient
 
