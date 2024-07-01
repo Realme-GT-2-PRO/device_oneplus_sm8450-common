@@ -133,7 +133,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0.vendor \
     libcamera_metadata.vendor \
     libexif.vendor \
+    libutilscallstack \
     libutilscallstack.vendor \
+    libprocessgroup.vendor \
     libyuv.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
@@ -337,7 +339,7 @@ PRODUCT_PACKAGES += \
 # Net
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.1.vendor \
-    netutils-wrapper-1.0
+    libnetutils.vendor
 
 # Neural network
 PRODUCT_PACKAGES += \
@@ -347,6 +349,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libOmxCore \
     libstagefrighthw \
+    libstagefright_omx.vendor \
     libstagefright_softomx_plugin.vendor
 
 # Overlays
@@ -384,9 +387,11 @@ PRODUCT_PACKAGES += \
     libcurl.vendor \
     libjson \
     libjsoncpp.vendor \
+    libqti_vndfwk_detect  \
     libqti_vndfwk_detect.vendor \
-    libqti_vndfwk_detect_vendor \
+    libsqlite \
     libsqlite.vendor \
+    libvndfwk_detect_jni.qti \
     libvndfwk_detect_jni.qti.vendor
 
 # QTI service tracker
