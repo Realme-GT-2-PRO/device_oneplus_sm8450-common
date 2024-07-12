@@ -56,6 +56,8 @@ PRODUCT_PACKAGES += \
     libeffectproxy \
     libhapticgenerator \
     libldnhncr \
+    libaudioroute.vendor \
+    libprocessgroup.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
@@ -120,6 +122,12 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libutilscallstack.vendor \
+    libutilscallstack.vendor:64
+
+PRODUCT_PACKAGES += \
+    android.frameworks.cameraservice.common@2.0.vendor \
+    android.frameworks.cameraservice.device@2.1.vendor \
     android.frameworks.cameraservice.service@2.2.vendor \
     android.frameworks.sensorservice@1.0.vendor \
     android.frameworks.stats-V1-ndk_platform.vendor \
@@ -133,11 +141,14 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0.vendor \
     libcamera_metadata.vendor \
     libexif.vendor \
-    libutilscallstack \
     libutilscallstack.vendor \
-    libprocessgroup.vendor \
     libyuv.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+
+PRODUCT_PACKAGES += \
+    android.frameworks.displayservice@1.0.vendor \
+    libcamera_provider_shim \
+    libpiex_shim
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
@@ -197,9 +208,13 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
+USE_OPENGL_RENDERER := true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.supports_background_blur=1
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -334,12 +349,15 @@ PRODUCT_PACKAGES += \
     libavservices_minijail \
     libavservices_minijail.vendor \
     libcodec2_hidl@1.0.vendor \
+    libcodec2_soft_common.vendor \
+    libcodec2_vndk.vendor \
     libpalclient
 
 # Net
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.1.vendor \
-    libnetutils.vendor
+    libnetutils.vendor \
+    netutils-wrapper-1.0
 
 # Neural network
 PRODUCT_PACKAGES += \
@@ -385,13 +403,14 @@ PRODUCT_PACKAGES += \
 # QMI
 PRODUCT_PACKAGES += \
     libcurl.vendor \
+    libcurl.vendor:64 \
     libjson \
     libjsoncpp.vendor \
-    libqti_vndfwk_detect  \
+    libqti_vndfwk_detect \
     libqti_vndfwk_detect.vendor \
-    libsqlite \
+    libqti_vndfwk_detect_vendor \
     libsqlite.vendor \
-    libvndfwk_detect_jni.qti \
+    libsqlite.vendor:64 \
     libvndfwk_detect_jni.qti.vendor
 
 # QTI service tracker
@@ -404,11 +423,15 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     android.hardware.secure_element@1.2.vendor \
-    librmnetctl
+    libril \
+    librilutils \
+    librmnetctl \
+    libssl.vendor
 
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.1-service.oplus-multihal \
+    android.frameworks.sensorservice@1.0 \
     libsensorndkbridge \
     sensors.dynamic_sensor_hal \
     sensors.oplus
@@ -527,6 +550,7 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     libwifi-hal-ctrl \
     libwifi-hal-qcom \
+    wpa_cli \
     wpa_supplicant \
     wpa_supplicant.conf
 
