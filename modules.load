@@ -1,7 +1,4 @@
 msm_sysstats.ko
-zsmalloc.ko
-lzo.ko
-lzo-rle.ko
 msm_show_resume_irq.ko
 mhi_cntrl_qcom.ko
 mhi_dev_uci.ko
@@ -161,7 +158,6 @@ qti-adc-tm.ko
 qti_qmi_sensor_v2.ko
 qti_qmi_cdev.ko
 bcl_soc.ko
-msm_lmh_dcvs.ko
 cpu_voltage_cooling.ko
 policy_engine.ko
 sdpm_clk.ko
