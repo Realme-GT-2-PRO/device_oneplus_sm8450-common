@@ -133,7 +133,7 @@
     <bool name="config_enableMultiUserUI">true</bool>
 
     <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">5</integer>
+    <integer name="config_multiuserMaximumUsers">4</integer>
 
     <!-- Whether or not to enable the lock screen entry point for the QR code scanner. -->
     <bool name="config_enableQrCodeScannerOnLockScreen">true</bool>
