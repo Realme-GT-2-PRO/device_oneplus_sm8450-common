@@ -454,7 +454,7 @@ PRODUCT_SOONG_NAMESPACES += \
     kernel/oneplus/sm8450-modules \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/everest/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client
 
 # Storage
