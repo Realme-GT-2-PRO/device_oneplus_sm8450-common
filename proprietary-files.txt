@@ -1491,6 +1491,3 @@ vendor/lib64/libwfduibcsrcinterface_vendor.so
 vendor/lib64/libwfdutils_proprietary.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so
 vendor/lib64/vendor.qti.hardware.wifidisplaysessionl@1.0-halimpl.so
-
-system/system/etc/cgroups.json:vendor/etc/cgroups.json
-system/system/etc/task_profiles.json:vendor/etc/task_profiles.json
