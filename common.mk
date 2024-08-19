@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021-2023 The LineageOS Project
+# Copyright (C) 2021-2024 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -56,9 +56,12 @@ PRODUCT_PACKAGES += \
     libeffectproxy \
     libhapticgenerator \
     libldnhncr \
+    libaudioroute.vendor \
+    libprocessgroup.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libhfp_pal \
     libreverbwrapper \
     libsndcardparser \
     libtinycompress \
@@ -98,6 +101,15 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
 
+# Bluetooth Library Deps
+PRODUCT_PACKAGES += \
+    liblhdc \
+    liblhdcv5 \
+    libldacBT_abr \
+    libldacBT_enc \
+    liblhdcBT_enc \
+    liblhdcv5BT_enc
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml
@@ -108,14 +120,27 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti.recovery \
     android.hardware.boot@1.2-service
 
+# Cgroup and task_profiles
+PRODUCT_COPY_FILES += \
+    system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Camera
 PRODUCT_PACKAGES += \
+    libutilscallstack.vendor \
+    libutilscallstack.vendor:64
+
+PRODUCT_PACKAGES += \
+    android.frameworks.cameraservice.common@2.0.vendor \
+    android.frameworks.cameraservice.device@2.1.vendor \
     android.frameworks.cameraservice.service@2.2.vendor \
     android.frameworks.sensorservice@1.0.vendor \
     android.frameworks.stats-V1-ndk_platform.vendor \
+    android.hardware.camera.provider@2.4.vendor \
+    android.hardware.camera.provider@2.5.vendor \
+    android.hardware.camera.provider@2.6.vendor \
     android.hardware.camera.provider@2.7.vendor \
-    android.hardware.graphics.common-V2-ndk.vendor \
-    android.hardware.graphics.common-V2-ndk_platform.vendor \
+    android.hardware.graphics.common-V4-ndk \
     camera.device@1.0-impl \
     vendor.qti.hardware.camera.aon@1.0.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor \
@@ -124,6 +149,11 @@ PRODUCT_PACKAGES += \
     libutilscallstack.vendor \
     libyuv.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+
+PRODUCT_PACKAGES += \
+    android.frameworks.displayservice@1.0.vendor \
+    libcamera_provider_shim \
+    libpiex_shim
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
@@ -138,10 +168,23 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
+# Dex
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep \
+    Settings \
+    SettingsGoogle \
+    SystemUI \
+    SystemUIGoogle
+
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    dalvik.vm.dex2oat-filter=everything \
+    dalvik.vm.image-dex2oat-filter=everything
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk_platform.vendor \
-    android.hardware.graphics.common-V1-ndk_platform.vendor \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
@@ -151,27 +194,32 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libsdmcore \
     libsdmutils \
-    libtinyxml \
+    libui.vendor \
     vendor.display.config@1.0 \
     vendor.display.config@1.15.vendor \
     vendor.display.config@2.0 \
     vendor.display.config@2.0.vendor \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.config-V5-ndk \
+    vendor.qti.hardware.display.config-V1-ndk.vendor \
+    vendor.qti.hardware.display.config-V2-ndk.vendor \
+    vendor.qti.hardware.display.config-V3-ndk.vendor \
+    vendor.qti.hardware.display.config-V4-ndk.vendor \
+    vendor.qti.hardware.display.config-V5-ndk.vendor \
+    vendor.qti.hardware.display.config-V6-ndk.vendor \
     vendor.qti.hardware.display.demura@2.0 \
     vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@3.0.vendor \
-    vendor.qti.hardware.display.mapper@4.0.vendor \
-    android.hardware.common-V2-ndk_platform.vendor
+    vendor.qti.hardware.display.mapper@4.0.vendor
+
+USE_OPENGL_RENDERER := true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
-# Doze
-PRODUCT_PACKAGES += \
-    OplusDoze
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.supports_background_blur=1
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -188,12 +236,20 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl.custom \
     fastbootd
 
+# Features
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/com.samsung.feature.samsung_experience_am.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.samsung.feature.samsu
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.oplus
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
+
+# Freeform Multiwindow
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -213,7 +269,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.gnss-V1-ndk_platform.vendor \
-    vendor.qti.hardware.display.config-V2-ndk.vendor \
     android.hardware.keymaster-V3-ndk_platform.vendor
 
 # Graphics
@@ -227,8 +282,9 @@ PRODUCT_COPY_FILES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1.vendor \
-    android.hardware.health-service.qti
+    android.hardware.health-service.qti_recovery \
+    android.hardware.health-service.qti \
+    android.hardware.health@2.1.vendor
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -275,18 +331,14 @@ PRODUCT_PACKAGES += \
     android.hardware.security.keymint-V1-ndk_platform.vendor \
     android.hardware.security.rkp-V3-ndk.vendor \
     android.hardware.security.secureclock-V1-ndk_platform.vendor \
-    android.hardware.security.sharedsecret-V1-ndk_platform.vendor \
+    android.hardware.security.sharedsecret-V1-ndk_platform.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
-
-# Lineage Health
+    
+# LZ4
 PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.1-service.oplus
+    liblz4.vendor
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -300,11 +352,15 @@ PRODUCT_PACKAGES += \
     libavservices_minijail \
     libavservices_minijail.vendor \
     libcodec2_hidl@1.0.vendor \
+    libcodec2_soft_common.vendor \
+    libcodec2_vndk.vendor \
     libpalclient
 
 # Net
 PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor
+    android.system.net.netd@1.1.vendor \
+    libnetutils.vendor \
+    netutils-wrapper-1.0
 
 # Neural network
 PRODUCT_PACKAGES += \
@@ -313,14 +369,17 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libOmxCore \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefright_omx.vendor \
+    libstagefright_softomx_plugin.vendor
 
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/generic/generic.mk)
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/overlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
@@ -336,9 +395,10 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
-    android.hardware.power@1.2.vendor \
-    vendor.qti.hardware.perf@2.3.vendor
+    android.hardware.power-service.lineage-libperfmgr \
+    android.hardware.power@1.3.vendor \
+    vendor.qti.hardware.perf@2.3.vendor \
+    libqti-perfd-client
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -347,10 +407,14 @@ PRODUCT_PACKAGES += \
 
 # QMI
 PRODUCT_PACKAGES += \
+    libcurl.vendor \
     libcurl.vendor:64 \
     libjson \
     libjsoncpp.vendor \
+    libqti_vndfwk_detect \
+    libqti_vndfwk_detect.vendor \
     libqti_vndfwk_detect_vendor \
+    libsqlite.vendor \
     libsqlite.vendor:64 \
     libvndfwk_detect_jni.qti.vendor
 
@@ -364,11 +428,15 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     android.hardware.secure_element@1.2.vendor \
-    librmnetctl
+    libril \
+    librilutils \
+    librmnetctl \
+    libssl.vendor
 
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.1-service.oplus-multihal \
+    android.frameworks.sensorservice@1.0 \
     libsensorndkbridge \
     sensors.dynamic_sensor_hal \
     sensors.oplus
@@ -427,16 +495,11 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml
+    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml
 
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti-v2
-
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oplus
 
 # TrustedUI
 PRODUCT_PACKAGES += \
@@ -454,7 +517,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
+    android.hardware.usb@1.3-service.dual_role_usb
 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/usb/etc
@@ -484,11 +547,12 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/com.android.vndk.current.on_vendor.apex:$(TA
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
-    android.hardware.wifi.hostapd@1.0.vendor \
+    android.hardware.wifi.hostapd@1.3.vendor \
     hostapd \
     libwpa_client \
     libwifi-hal-ctrl \
     libwifi-hal-qcom \
+    wpa_cli \
     wpa_supplicant \
     wpa_supplicant.conf
 
@@ -506,7 +570,7 @@ PRODUCT_PACKAGES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    android.media.audio.common.types-V2-cpp \
+    android.media.audio.common.types-V2-cpp:64 \
     libnl \
     libpng.vendor \
     libwfdaac_vendor
