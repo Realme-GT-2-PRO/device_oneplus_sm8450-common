@@ -157,8 +157,11 @@ vendor/lib64/soundfx/libasphere.so
 vendor/lib64/soundfx/libshoebox.so
 
 # Bluetooth
+odm/lib64/libbluetooth_audio_extend_factory_client.so
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
+vendor/lib/hw/android.hardware.bluetooth.audio@2.0-impl.so
+vendor/lib64/hw/android.hardware.bluetooth.audio@2.0-impl.so
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib64/lib_bt_aptx.so
 vendor/lib64/lib_bt_ble.so
@@ -174,6 +177,7 @@ vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so
 vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so
 vendor/lib64/btaudio_offload_if.so
 vendor/lib64/btaudio_offload_if.so
+vendor/lib64/libbluetooth_audio_session.so
 vendor/lib64/libbluetooth_audio_session_qti.so
 vendor/lib64/libbluetooth_audio_session_qti_2_1.so
 vendor/lib64/libbt-hidlclient.so
@@ -345,6 +349,7 @@ vendor/lib64/libPanelChaplin.so
 
 # Display
 vendor/lib64/vendor.qti.hardware.display.config-V5-ndk_platform.so
+vendor/lib64/vendor.qti.hardware.display.config-V6-ndk_platform.so
 
 # Display (HDR)
 vendor/lib64/libhdr_tm.so
@@ -815,6 +820,10 @@ vendor/lib64/vendor.qti.ims.rcsuce@1.2.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
 
+# Osense
+odm/lib64/libosenseaidlhalclient.so
+odm/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
+
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
 
@@ -1077,7 +1086,6 @@ vendor/bin/qmipriod
 vendor/bin/qrtr-cfg
 vendor/bin/qrtr-lookup
 vendor/bin/qrtr-ns
-vendor/etc/init/qmipriod.debug.rc
 vendor/etc/init/qmipriod.rc
 vendor/etc/seccomp_policy/qti-systemd.policy
 vendor/lib64/libidl.so

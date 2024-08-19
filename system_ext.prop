@@ -12,11 +12,18 @@ dalvik.vm.dex2oat64.enabled=true
 debug.sf.enable_hwc_vds=1
 persist.sys.brightness.low.gamma=true
 
+# Deep Sleep
+vendor.post_boot.parsed=1s
+
 # CNE
 persist.vendor.cne.feature=1
 
 # DPM
 persist.vendor.dpm.feature=11
+
+# EGL - Blobcache configuration
+ro.egl.blobcache.multifile=true
+ro.egl.blobcache.multifile_limit=33554432
 
 # GPS
 persist.backup.ntpServer=0.pool.ntp.org

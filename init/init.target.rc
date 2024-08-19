@@ -119,7 +119,7 @@ on boot
     setprop vendor.usb.controller a600000.dwc3
 
 on property:vendor.display.lcd_density=560
-   setprop dalvik.vm.heapgrowthlimit 256m
+   setprop dalvik.vm.heapgrowthlimit 384m
 
 on property:vendor.display.lcd_density=640
    setprop dalvik.vm.heapgrowthlimit 512m
@@ -178,6 +178,10 @@ on property:sys.shutdown.requested=*
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
     stop vendor.per_proxy
 
+on property:ro.bootmode=charger
+    stop vendor.per_mgr
+    stop vendor.per_proxy
+
 on early-boot && property:persist.vendor.pcie.boot_option=*
     write /sys/bus/platform/devices/1c00000.qcom,pcie/debug/boot_option ${persist.vendor.pcie.boot_option}
     write /sys/bus/platform/devices/1c08000.qcom,pcie/debug/boot_option ${persist.vendor.pcie.boot_option}
@@ -185,3 +189,9 @@ on early-boot && property:persist.vendor.pcie.boot_option=*
 on property:sys.boot_completed=1
     enable vendor.qvirtmgr
     start  vendor.qvirtmgr
+
+    # Only owner can acces this node
+    chmod 440 /proc/net/unix
+
+    # STOP EATING MY BATTERY AFTER 100H OF UPTIME FUCK YOU
+    stop statsd
