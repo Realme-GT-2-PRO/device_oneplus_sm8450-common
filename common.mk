@@ -54,6 +54,7 @@ PRODUCT_PACKAGES += \
     libagm_pcm_plugin \
     libbatterylistener \
     libeffectproxy \
+    libfmpal \
     libhapticgenerator \
     libldnhncr \
     libaudioroute.vendor \
@@ -97,6 +98,8 @@ PRODUCT_PACKAGES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0.vendor \
+    android.hardware.bluetooth.audio-V3-ndk.vendor \
+    vendor.qti.hardware.bluetooth.audio-V1-ndk.vendor \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
@@ -127,33 +130,22 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libutilscallstack.vendor \
-    libutilscallstack.vendor:64
-
-PRODUCT_PACKAGES += \
+    android.frameworks.stats-V1-ndk_platform.vendor \
+    android.hardware.camera.common@1.0.vendor \
+    android.hardware.camera.device@3.7.vendor \
+    android.hardware.camera.metadata@3.6.vendor \
+    android.hardware.camera.provider@2.7.vendor \
     android.frameworks.cameraservice.common@2.0.vendor \
     android.frameworks.cameraservice.device@2.1.vendor \
     android.frameworks.cameraservice.service@2.2.vendor \
-    android.frameworks.sensorservice@1.0.vendor \
-    android.frameworks.stats-V1-ndk_platform.vendor \
-    android.hardware.camera.provider@2.4.vendor \
-    android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor \
-    android.hardware.camera.provider@2.7.vendor \
-    android.hardware.graphics.common-V4-ndk \
     camera.device@1.0-impl \
-    vendor.qti.hardware.camera.aon@1.0.vendor \
-    vendor.qti.hardware.camera.device@1.0.vendor \
     libcamera_metadata.vendor \
     libexif.vendor \
     libutilscallstack.vendor \
     libyuv.vendor \
+    vendor.qti.hardware.camera.aon@1.0.vendor \
+    vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
-
-PRODUCT_PACKAGES += \
-    android.frameworks.displayservice@1.0.vendor \
-    libcamera_provider_shim \
-    libpiex_shim
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
@@ -185,6 +177,9 @@ PRODUCT_SYSTEM_PROPERTIES += \
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.common-V2-ndk_platform.vendor \
+    android.frameworks.displayservice@1.0.vendor \
+    android.hardware.graphics.allocator@4.0.vendor \
+    android.hardware.graphics.common-V4-ndk.vendor \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
@@ -196,24 +191,23 @@ PRODUCT_PACKAGES += \
     libsdmutils \
     libui.vendor \
     vendor.display.config@1.0 \
-    vendor.display.config@1.15.vendor \
+    vendor.display.config@1.11.vendor \
     vendor.display.config@2.0 \
     vendor.display.config@2.0.vendor \
+    vendor.qti.hardware.capabilityconfigstore@1.0.vendor \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.config-V1-ndk.vendor \
-    vendor.qti.hardware.display.config-V2-ndk.vendor \
-    vendor.qti.hardware.display.config-V3-ndk.vendor \
-    vendor.qti.hardware.display.config-V4-ndk.vendor \
-    vendor.qti.hardware.display.config-V5-ndk.vendor \
-    vendor.qti.hardware.display.config-V6-ndk.vendor \
-    vendor.qti.hardware.display.demura@2.0 \
+    vendor.qti.hardware.display.config-V1-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V2-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V3-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V4-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V5-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V6-ndk_platform.vendor \
+    vendor.qti.hardware.display.demura@2.0.vendor \
     vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
-
-USE_OPENGL_RENDERER := true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
@@ -242,7 +236,8 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.oplus
+    android.hardware.biometrics.fingerprint@2.3-service.oplus \
+    libdumpstateutil.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -282,8 +277,9 @@ PRODUCT_COPY_FILES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.qti_recovery \
     android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery \
+    android.hardware.health@1.0.vendor \
     android.hardware.health@2.1.vendor
 
 # HIDL
@@ -298,7 +294,8 @@ PRODUCT_COPY_FILES += \
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
-    IPACM_cfg.xml
+    IPACM_cfg.xml \
+    IPACM_Filter_cfg.xml
 
 # Init
 PRODUCT_PACKAGES += \
@@ -318,9 +315,6 @@ PRODUCT_PACKAGES += \
     ueventd.oplus.rc \
     ueventd.qcom.rc
 
-# Kernel
-PRODUCT_ENABLE_UFFD_GC := false
-
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor \
@@ -328,25 +322,29 @@ PRODUCT_PACKAGES += \
 
 # Keymint
 PRODUCT_PACKAGES += \
-    android.hardware.security.keymint-V1-ndk_platform.vendor \
+    android.hardware.hardware_keystore.xml \
+    android.hardware.security.keymint-V1-ndk.vendor \
+    android.hardware.security.keymint-V3-ndk.vendor \
     android.hardware.security.rkp-V3-ndk.vendor \
-    android.hardware.security.secureclock-V1-ndk_platform.vendor \
-    android.hardware.security.sharedsecret-V1-ndk_platform.vendor
+    android.hardware.security.secureclock-V1-ndk.vendor \
+    android.hardware.security.sharedsecret-V1-ndk.vendor
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
-    
-# LZ4
+    frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml \
+    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
+
+# Lineage Health
 PRODUCT_PACKAGES += \
-    liblz4.vendor
+    vendor.lineage.health-service.default
 
 # Media
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm.policy:vendor/etc/seccomp_policy/c2audio.vendor.base-arm.policy \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:vendor/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm.policy:vendor/etc/seccomp_policy/c2audio.vendor.ext-arm.policy \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy
+    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm.policy \
+    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
+    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm.policy \
+    $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy
+    
 
 PRODUCT_PACKAGES += \
     libavservices_minijail \
@@ -358,13 +356,25 @@ PRODUCT_PACKAGES += \
 
 # Net
 PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor \
-    libnetutils.vendor \
-    netutils-wrapper-1.0
+    android.system.net.netd@1.1.vendor
 
-# Neural network
+# NFC
 PRODUCT_PACKAGES += \
-    android.hardware.neuralnetworks@1.3.vendor
+    android.hardware.nfc@1.2.vendor \
+    android.hardware.nfc-service.nxp \
+    android.hardware.secure_element@1.2.vendor \
+    com.android.nfc_extras \
+    Tag
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.ese.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.ese.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.uicc.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -395,10 +405,10 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    android.hardware.power@1.3.vendor \
-    vendor.qti.hardware.perf@2.3.vendor \
-    libqti-perfd-client
+    android.hardware.power-service-qti \
+    android.hardware.power@1.2.vendor \
+    vendor.qti.hardware.perf@2.3.vendor
+
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -416,7 +426,8 @@ PRODUCT_PACKAGES += \
     libqti_vndfwk_detect_vendor \
     libsqlite.vendor \
     libsqlite.vendor:64 \
-    libvndfwk_detect_jni.qti.vendor
+    libvndfwk_detect_jni.qti.vendor \
+    libvndfwk_detect_jni.qti_vendor
 
 # QTI service tracker
 PRODUCT_PACKAGES += \
@@ -426,7 +437,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.6.vendor \
     android.hardware.radio.config@1.3.vendor \
+    android.hardware.radio.data-V2-ndk.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
+    android.hardware.radio.network-V2-ndk.vendor \
+    android.hardware.radio-V2-ndk.vendor \
     android.hardware.secure_element@1.2.vendor \
     libril \
     librilutils \
@@ -436,7 +450,7 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.1-service.oplus-multihal \
-    android.frameworks.sensorservice@1.0 \
+    android.frameworks.sensorservice@1.0.vendor \
     libsensorndkbridge \
     sensors.dynamic_sensor_hal \
     sensors.oplus
@@ -557,8 +571,10 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
+    frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
@@ -570,7 +586,7 @@ PRODUCT_PACKAGES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    android.media.audio.common.types-V2-cpp:64 \
+    android.media.audio.common.types-V2-cpp \
     libnl \
     libpng.vendor \
     libwfdaac_vendor
