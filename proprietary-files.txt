@@ -583,12 +583,12 @@ vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # Graphics (Adreno)
-vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so;SYMLINK=vendor/lib/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
 vendor/lib/egl/libGLESv2_adreno.so;SYMLINK=vendor/lib/libGLESv2_adreno.so
-vendor/lib/egl/libVkLayer_ADRENO_qprofiler.so
 vendor/lib/egl/libq3dtools_adreno.so;SYMLINK=vendor/lib/libq3dtools_adreno.so
+vendor/lib/egl/eglSubDriverAndroid.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libVkLayer_ADRENO_qprofiler.so
 vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/libCB.so
 vendor/lib/libOpenCL.so
@@ -601,12 +601,12 @@ vendor/lib/libkernelmanager.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libllvm-qgl.so
-vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so;SYMLINK=vendor/lib64/libEGL_adreno.so
-vendor/lib64/egl/libGLESv1_CM_adreno.so
 vendor/lib64/egl/libGLESv2_adreno.so;SYMLINK=vendor/lib64/libGLESv2_adreno.so
-vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so
 vendor/lib64/egl/libq3dtools_adreno.so;SYMLINK=vendor/lib64/libq3dtools_adreno.so
+vendor/lib64/egl/eglSubDriverAndroid.so
+vendor/lib64/egl/libGLESv1_CM_adreno.so
+vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so
 vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/libCB.so
 vendor/lib64/libOpenCL.so
@@ -653,11 +653,9 @@ vendor/bin/slim_daemon
 vendor/bin/xtra-daemon
 vendor/bin/xtwifi-client
 vendor/bin/xtwifi-inet-agent
-vendor/etc/gnss_antenna_info.conf
 vendor/etc/init/android.hardware.gnss-aidl-service-qti.rc
 vendor/etc/init/init.qdmastats.rc
 vendor/etc/init/loc-launcher.rc
-vendor/etc/sec_config
 vendor/etc/seccomp_policy/gnss@2.0-base.policy
 vendor/etc/seccomp_policy/gnss@2.0-xtra-daemon.policy
 vendor/etc/seccomp_policy/gnss@2.0-xtwifi-client.policy
@@ -668,10 +666,12 @@ vendor/etc/vintf/manifest/vendor.qti.gnss-service.xml
 vendor/etc/apdr.conf
 vendor/etc/batching.conf
 vendor/etc/cacert_location.pem
+vendor/etc/gnss_antenna_info.conf
 vendor/etc/gps.conf
 vendor/etc/izat.conf
 vendor/etc/lowi.conf
 vendor/etc/sap.conf
+vendor/etc/sec_config
 vendor/etc/xtra_root_cert.pem
 vendor/etc/xtwifi.conf
 vendor/lib64/hw/android.hardware.gnss-aidl-impl-qti.so
@@ -747,13 +747,13 @@ system_ext/framework/vendor.qti.ims.rcssip-V1.2-java.jar|e627b85a9268734c5e66adf
 system_ext/framework/vendor.qti.ims.rcsuce-V1.0-java.jar|517127c426fa94f28d97409bc7d07ca4cb92a9b0
 system_ext/framework/vendor.qti.ims.rcsuce-V1.1-java.jar|c7ea95f134ca6dc2b569b8c9b1c9b433bb6dae0c
 system_ext/framework/vendor.qti.ims.rcsuce-V1.2-java.jar|f221e0dfbb89daab9cca03104f9a92b2fd9b15bc
+system_ext/lib64/libimscamera_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimscamera_jni.so|f6b7647cfe080baeed006c932b495ff94b5685a7
+system_ext/lib64/libimsmedia_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimsmedia_jni.so|5b34af19636863d22e5e7b4f20136564e6ee2222
 system_ext/lib64/lib-imsvideocodec.so|b3c71f1bb514a86c2bbc08bdc245bf9affa56323
 system_ext/lib64/lib-imsvt.so|707afd60b7849df50ca46922181dc8cf72682df9
 system_ext/lib64/lib-imsvtextutils.so|1dfb5640cd23a92e7ca55a84118b2966653aebc7
 system_ext/lib64/lib-imsvtutils.so|6df6279955493da11860bb048db38f01ec05c2aa
 system_ext/lib64/libdiag_system.so|ced16a9ffd51f155a4b20a0c04fe7b595bfa8cc4
-system_ext/lib64/libimscamera_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimscamera_jni.so|f6b7647cfe080baeed006c932b495ff94b5685a7
-system_ext/lib64/libimsmedia_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimsmedia_jni.so|5b34af19636863d22e5e7b4f20136564e6ee2222
 system_ext/lib64/vendor.qti.imsrtpservice@3.0.so|ace5e02b6cd79b43a07d84e2d18d6818821a3c48
 system_ext/lib64/vendor.qti.imsrtpservice@3.1.so|e64aa8a21a8db69d2e2ea14929bb20ced99c119d
 system_ext/priv-app/ims/ims.apk|9065ecc8af98f75e860e6294524fd801ba0ebcc3
@@ -816,10 +816,6 @@ vendor/lib64/vendor.qti.ims.rcsuce@1.1.so
 vendor/lib64/vendor.qti.ims.rcsuce@1.2.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
-
-# Osense
-odm/lib64/libosenseaidlhalclient.so
-odm/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
 
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
@@ -952,7 +948,12 @@ vendor/lib64/libFlacSwDec.so
 odm/bin/hw/vendor-oplus-hardware-performance-V1-service
 odm/etc/init/vendor-oplus-hardware-performance-V1-service.rc
 odm/etc/vintf/manifest/manifest_performance_aidl.xml
+odm/lib64/libosenseaidlhalclient.so
+odm/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
+odm/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
 odm/lib64/vendor.oplus.hardware.performance-V1-ndk_platform.so
+vendor/lib64/vendor.oplus.hardware.osense.client-V1-ndk_platform.so
+vendor/lib64/vendor.oplus.hardware.performance-V1-ndk_platform.so
 
 # Peripheral manager
 vendor/bin/pm-proxy
@@ -965,6 +966,7 @@ vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
 
 # Perf
+system_ext/etc/perf/wlc_model.tflite
 vendor/bin/hw/vendor.qti.hardware.perf-hal-service
 vendor/etc/init/vendor.qti.hardware.perf-hal-service.rc
 vendor/etc/perf/avcsysnodesconfigs.xml
@@ -991,6 +993,8 @@ vendor/lib64/libqti-utils.so
 vendor/lib64/libskewknob.so
 
 # Perf LM
+system_ext/lib/vendor.qti.hardware.iop@2.0.so
+system_ext/lib64/vendor.qti.hardware.iop@2.0.so
 vendor/bin/hw/vendor.qti.hardware.iop@2.0-service
 vendor/etc/init/qapeservice.rc
 vendor/etc/init/vendor.qti.hardware.iop@2.0-service.rc
@@ -1029,7 +1033,22 @@ vendor/lib64/vendor.qti.memory.pasrmanager@1.0.so
 vendor/lib64/vendor.qti.memory.pasrmanager@1.1.so
 vendor/lib64/vendor.qti.power.pasrmanager@1.0.so
 
+# Power
+odm/bin/hw/android.hardware.power.stats-impl.oplus
+odm/bin/hw/vendor-oplus-hardware-power-powermonitor-V1-service
+odm/etc/init/android.hardware.power.stats-service.oplus.rc
+odm/etc/init/vendor-oplus-hardware-power-powermonitor-V1-service.rc
+odm/etc/vintf/manifest/android.hardware.power.stats-service.oplus.xml
+odm/etc/vintf/manifest/android.hardware.power.stats.IPowerStats.xml
+odm/etc/vintf/manifest/manifest_powermonitor_aidl.xml
+odm/lib64/vendor.oplus.hardware.handlefactory-V1-ndk_platform.so
+odm/lib64/vendor.oplus.hardware.power.powermonitor-V1-ndk_platform.so
+vendor/etc/vintf/manifest/vendor.qti.hardware.power.powermodule.xml
+vendor/lib64/hw/power.default.so
+vendor/lib64/vendor.qti.hardware.power.powermodule@1.0.so
+
 # Power-off alarm
+system_ext/lib64/vendor.qti.hardware.alarm@1.0.so
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service
 vendor/etc/init/vendor.qti.hardware.alarm@1.0-service.rc
 vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so
@@ -1046,6 +1065,13 @@ vendor/lib64/libstandbyfeature.so
 vendor/lib64/libvendorscenariopoweroptfeature.so
 vendor/lib64/libvideooptfeature.so
 vendor/lib64/vendor.qti.hardware.power.powermodule@1.0.so
+
+# Power configs
+vendor/etc/pwr/PSMPowerOptFeature.xml
+vendor/etc/pwr/PowerFeatureConfig.xml
+vendor/etc/pwr/StandbyFeature.xml
+vendor/etc/pwr/VendorScenarioPowerOptFeature.xml
+vendor/etc/pwr/VideoPowerOptFeature.xml
 
 # QCC
 system_ext/app/QCC/QCC.apk
@@ -1504,6 +1530,7 @@ system_ext/etc/init/wfdservice.rc
 system_ext/etc/permissions/wfd-system-ext-privapp-permissions-qti.xml
 system_ext/etc/seccomp_policy/wfdservice64.policy
 system_ext/etc/wfdconfigsink.xml
+system_ext/lib64/libwfdnative.so;SYMLINK=system_ext/priv-app/WfdService/lib/arm64/libwfdnative.so
 system_ext/lib64/com.qualcomm.qti.wifidisplayhal@1.0.so
 system_ext/lib64/libmmrtpdecoder.so
 system_ext/lib64/libmmrtpencoder.so
@@ -1515,7 +1542,6 @@ system_ext/lib64/libwfddisplayconfig.so
 system_ext/lib64/libwfdmminterface.so
 system_ext/lib64/libwfdmmsink.so
 system_ext/lib64/libwfdmmsrc_system.so
-system_ext/lib64/libwfdnative.so;SYMLINK=system_ext/priv-app/WfdService/lib/arm64/libwfdnative.so
 system_ext/lib64/libwfdrtsp.so
 system_ext/lib64/libwfdservice.so
 system_ext/lib64/libwfdsinksm.so
